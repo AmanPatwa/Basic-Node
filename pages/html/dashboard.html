@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Doctor DashBoard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <!-- <link type="text/css" href="../css/bootstrap-timepicker.min.css" />
+        <script src="../js/bootstrap-timepicker.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/css/bootstrap-timepicker.min.css"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/bootstrap.timepicker/0.2.6/js/bootstrap-timepicker.min.js"></script>
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"> -->
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+    <link rel="icon" href="../images/fav_icon.png" type="image/gif">
+</head>
+
+<body>
+
+    <!-- nav bar  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Clara Health</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+            <ul class="navbar-nav ">
+
+                <li class="nav-item dropdown mr-5 pr-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown">
+                        Select Action
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item active" id="verif" role="tab" data-toggle="tab"
+                                href="#veriftab">Verification</a></li>
+                        <li><a class="dropdown-item" id="appoint" role="tab" data-toggle="tab"
+                                href="#appointments">Appointments</a></li>
+                        <li><a class="dropdown-item" id="enq" role="tab" data-toggle="tab"
+                                href="#enquiries">Enquiries</a></li>
+                        <li><a class="dropdown-item" id="settle" role="tab" data-toggle="tab"
+                                href="#settlements">Settlements</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="tab-content container-fluid">
+
+        <!-- verification -->
+        <div class="tab-pane active" id="veriftab">
+
+            <!-- <div class="row"> -->
+            <!-- <div class="col-3 sideMenu">-->
+            <div class="row">
+                <div class="col-sm-2 sideMenu">
+                    <row>
+                        <h5 onclick="(
+                            function(){
+                                $('#verified_table_mwrapper').hide();
+                                $('#verifs_mwrapper').show();
+                                $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw();
+                            }
+                        )();"><b style="cursor: pointer;">New Registrations</b></h5>
+                        <p style="color:#ff3d41"><span id="count_new_registration"></span> New Registrations</p>
+                    </row>
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+                    <row>
+                        <h5 onclick="(
+                            function(){
+                                $('#verifs_mwrapper').hide();
+                                $('#verified_table_mwrapper').show();
+                                $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw();
+                            }
+                        )();"><b style="cursor: pointer;">Verified Profiles</b></h5>
+                        <p style="color:#ff3d41"><span id="count_verified_profiles"></span> New Entries</p>
+                    </row>
+
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+
+                    <row>
+                        <i class="fa fa-plus-circle fa-lg py-4" aria-hidden="true" id="create_new_doctor" onclick="(
+                            function(){
+                                // populateModal({});
+                                verificationApprovalObj.role='DOCTOR';
+                                $('#Verif_Modal h4').removeClass('cAfter')
+                                $('#Verif_Modal').modal('show');
+                            }
+                        )();"></i> Create New Doctor
+                    </row>
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+                    <row>
+                        <i class="fa fa-plus-circle fa-lg py-4" aria-hidden="true" id="create_new_doctor" onclick="(
+                            function(){
+                                // populateModal({});
+                                $('#verif_clinic_Modal h4').removeClass('cAfter')
+                                $('#verif_clinic_Modal').modal('show');
+                            }
+                        )();"></i> Create New Clinic
+                    </row>
+                </div>
+
+                <div class="container col-sm-10 p-4">
+                    <div id="verifs_mwrapper">
+
+                        <table id="verifs" class="stripe hover ui celled table">
+                        </table>
+
+                    </div>
+
+                    <div id="verified_table_mwrapper">
+
+                        <table id="verified_table" class="stripe hover order-column row-border compact ">
+                        </table>
+
+                    </div>
+                    <!-- <button type="button" style="float: right;" onclick="loadNextPage()">Next</button> -->
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <!-- Appointments -->
+        <div class="tab-pane" id="appointments">
+            <div class="row">
+                <div class="col-sm-2 sideMenu">
+                    <row>
+                        <h5 onclick="(
+                            function(){
+                                $('#weeks_mwrapper').hide();
+                                $('#follow_mwrapper').hide();
+                                $('#all_mwrapper').hide();
+                                $('#todays_mwrapper').show();
+                                $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw();
+                            }
+                        )();"><b style="cursor: pointer;">Todays Appointments</b></h5>
+                        <p style="color:#ff3d41"><span id="count_today_appointments"></span> Appointments</p>
+                    </row>
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+                    <row>
+                        <h5 onclick="(
+                            function(){
+                                $('#todays_mwrapper').hide();
+                                $('#follow_mwrapper').hide();
+                                $('#all_mwrapper').hide();
+                                $('#weeks_mwrapper').show();
+                                $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw();
+                            }
+                        )();"><b style="cursor: pointer;">Appointments this week</b></h5>
+                        <p style="color:#ff3d41"><span id="count_week_appointments"></span> Appointments</p>
+                    </row>
+
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+
+                    <row>
+                        <h5 onclick="(
+                            function(){
+                                $('#todays_mwrapper').hide();
+                                $('#weeks_mwrapper').hide();
+                                $('#all_mwrapper').hide();
+                                $('#follow_mwrapper').show();
+                                $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw();
+                            }
+                        )();"><b style="cursor: pointer;">Follow Ups</b></h5>
+                        <p style="color:#ff3d41"><span id="count_unclosed_entries"></span> Unclosed Entries</p>
+                    </row>
+
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+
+                    <row>
+                        <h5 onclick="(
+                            function(){
+                                $('#todays_mwrapper').hide();
+                                $('#weeks_mwrapper').hide();
+                                $('#follow_mwrapper').hide();
+                                $('#all_mwrapper').show();
+                                $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust().draw();
+                            }
+                        )();"><b style="cursor: pointer;">All Appointments</b></h5>
+                        <p style="color:#ff3d41">View All</p>
+                    </row>
+
+
+
+                    <!-- <row>
+                        <i class="fa fa-plus-circle fa-lg py-4" aria-hidden="true" id="create_new_doctor" onclick="(
+                            function(){
+                                // populateModal({});
+                                $('#Verif_Modal h4').removeClass('cAfter')
+                                $('#Verif_Modal').modal('show');
+                            }
+                        )();"></i> Create New Doctor
+                    </row>
+                    <row>
+                        <div style="background-color: black; height: 2px; width: 100%; margin: 5px"> </div>
+                    </row>
+                    <row>
+                        <i class="fa fa-plus-circle fa-lg py-4" aria-hidden="true" id="create_new_doctor" onclick="(
+                            function(){
+                                // populateModal({});
+                                $('#verif_clinic_Modal h4').removeClass('cAfter')
+                                $('#verif_clinic_Modal').modal('show');
+                            }
+                        )();"></i> Create New Clinic
+                    </row> -->
+                </div>
+
+                <div class="container col-sm-10 p-4">
+                    <div id="todays_mwrapper">
+                        <table id="todays" class="stripe hover order-column row-border compact ">
+                        </table>
+                        <!-- <div class="row p-4">
+                            <button id='previous_page_today'
+                                onclick="changePageAppointments(-1,'TODAY',$(this).parent())"> &lt; </button>
+                            <span id='pageNo_today' class="px-4"> 1 </span>
+                            <button id='next_page_today' onclick="changePageAppointments(1,'TODAY',$(this).parent())">
+                                &gt; </button>
+                        </div> -->
+
+                    </div>
+
+                    <div id="weeks_mwrapper">
+                        <table id="weeks" class="stripe hover order-column row-border compact ">
+                        </table>
+                        <!-- <div class="row p-4">
+                            <button id='previous_page_week'
+                                onclick="changePageAppointments(-1,'WEEK',$(this).parent())"> &lt; </button>
+                            <span id='pageNo_week' class="px-4"> 1 </span>
+                            <button id='next_page_week' onclick="changePageAppointments(1,'WEEK',$(this).parent())">
+                                &gt; </button>
+                        </div> -->
+
+                    </div>
+
+                    <div id="follow_mwrapper">
+                        <table id="followUps" class="stripe hover order-column row-border compact ">
+                        </table>
+                        <!-- <div class="row p-4">
+                            <button id='previous_page_follow'
+                                onclick="changePageAppointments(-1,'FOLLOW_UP',$(this).parent())"> &lt; </button>
+                            <span id='pageNo_follow' class="px-4"> 1 </span>
+                            <button id='next_page_follow'
+                                onclick="changePageAppointments(1,'FOLLOW_UP',$(this).parent())"> &gt; </button>
+                        </div> -->
+
+                    </div>
+
+                    <div id="all_mwrapper">
+                        <table id="viewAll" class="stripe hover order-column row-border compact ">
+                        </table>
+                        <!-- <div class="row p-4">
+                            <button id='previous_page_all_app'
+                                onclick="changePageAppointments(-1,null,$(this).parent())"> &lt; </button>
+                            <span id='pageNo_all_app' class="px-4"> 1 </span>
+                            <button id='next_page_all_app' onclick="changePageAppointments(1,null,$(this).parent())">
+                                &gt; </button>
+                        </div> -->
+
+                    </div>
+                    <!-- <button type="button" style="float: right;" onclick="loadNextPage()">Next</button> -->
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Enquiries -->
+        <div class="tab-pane" id="enquiries">this is Enquiries tab</div>
+
+        <!-- Settlements -->
+        <div class="tab-pane" id="settlements">this is Settlements tab</div>
+
+
+    </div>
+
+    <div id="wait"
+        style="display:none;z-index: 9999;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
+        <img src='../images/demo-wait.gif' width="64" height="64" /><br>Loading..</div>
+
+
+    <!-- verfication Modal -->
+    <div id="Verif_Modal" class="modal fade left" role="dialog">
+        <div class="modal-dialog modal-lg modal-full-height modal-left" role="document">
+
+            <!-- Modal content-->
+            <div class="modal-content px-5">
+
+                <div class="modal-header">
+
+                    <div class="row" style="width: 100%;">
+                        <div class="col-lg">
+                            <div class="row pb-4 pl-2">
+                                <img src="../images/profile.png" id="profile_photo" class="img-thumbnail"
+                                    style="border-radius: 50%; width: 50px; height:50px;" onclick="(
+                                        function(){
+                                            $('#profile_photo_input').trigger('click');
+                                        }
+                                    )()">
+                                <input type="file" id="profile_photo_input" style="display:none"
+                                    onchange="loadProfilePhotos(this)" />
+                                <h4 class="modal-title px-4 cAfter" id="verif_modal_drName"
+                                    style="margin-top: auto; margin-bottom: auto;">&nbsp;
+                                </h4>
+                            </div>
+                            <p id="verif_modal_regText">Registered on : <span id="verif_modal_regDate"></span></p>
+                        </div>
+                        <div class="col-sm">
+                            
+                        </div>
+                        <div class="col-sm">
+                            <button type="submit" id="verif_modal_saveBtn" class="btn btn-default myBtn"
+                                onclick="save('REGISTERED','DOCTOR')">Save</button>
+                            <button type="submit" id="verif_modal_approvBtn" class="btn btn-default myBtn"
+                                onclick="approveDoctor('VERIFIED')">Approve</button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="close" data-dismiss="modal" onclick="clearData($(this).parent().parent())">&times;</button>
+
+                </div>
+
+                <div class="modal-body" style="padding: 20px;">
+
+                    <form id="verif_modal_form">
+
+                        <label for="verif_modal_fname">Name</label>
+                        <div class="row verif_form_row">
+                            <div class="col"><input type="text" class="form-control" placeholder="First Name"
+                                    id="verif_modal_fname" required></div>
+                            <div class="col"><input type="text" class="form-control" placeholder="Middle Name"
+                                    id="verif_modal_mname" ></div>
+                            <div class="col"><input type="text" class="form-control" placeholder="Last Name"
+                                    id="verif_modal_lname" required></div>
+                        </div>
+
+                        <div class="row verif_form_row">
+                            <div class="col"><label for="verif_modal_number">Phone No.</label>
+                                <input type="number" class="form-control" placeholder="Phone No."
+                                    id="verif_modal_number">
+                            </div>
+
+                            <div class="col"><label for="verif_modal_repNo">Representative's No.</label>
+                                <input type="number" class="form-control" placeholder="Representative's No."
+                                    id="verif_modal_repNo">
+                            </div>
+
+                                <div class="col">
+                                <label for="verif_modal_accNo">Accountant's No.</label>
+                                <input type="number" class="form-control" placeholder="Accounts's No." id="verif_modal_accNo">    
+                                </div>
+                        </div>
+
+
+                        <div class="row verif_form_row">
+                            <div class="col"><label for="verif_modal_refNo">Registration No.</label><input type="text"
+                                    class="form-control" placeholder="Reference No." id="verif_modal_refNo" required>
+                            </div>
+                            <div class="col"><label for="verif_modal_working">Working Since</label><input type="date"
+                                    class="form-control" placeholder="Working Since" id="verif_modal_working" required>
+                            </div>
+                            <div class="col"> Exp : </div>
+                        </div>
+
+                        <label>DOB & Gender</label>
+                        <div class="row verif_form_row">
+                            <div class="col"><input type="date" class="form-control" placeholder="DOB"
+                                    id="verif_modal_dob" required></div>
+                            <div class="col">
+                                <select class="form-control" id="verif_modal_gender" required>
+                                    <option value="" selected>select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="city"
+                                    id="verif_modal_city" required>
+                        
+                            </div>
+                        </div>
+
+                        <label>Consulting fees</label>
+                        <div class="row verif_form_row">
+                            <div class="col"><input type="number" class="form-control" placeholder="fees"
+                                    id="verif_modal_fees" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="latitude"
+                                    id="verif_modal_lat" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" placeholder="longitude"
+                                    id="verif_modal_long" required>
+                            </div>
+                        </div>
+
+                        <label class="pt-2">Availability</label>
+                        <button type="button" class="btn myBtn" data-toggle="modal" id="availability">+</button>
+
+                        <div class="gridWrapper" id="availGrid">
+
+                        </div>
+                        <!-- <div class="row verif_form_row">
+                                <div class="col verif_items ">asd</div>
+                                <div class="col verif_items ">wer</div>
+                                <div class="col verif_items ">sdg</div>
+                            </div> -->
+
+
+                        <label>Qualifications, Certifications & Documents</label>
+                        <button type="button" class="btn myBtn" data-toggle="modal" id="document">+</button>
+
+
+                        <div class="gridWrapper" id="documentGrid">
+
+
+                        </div>
+                        <!-- <div class="row verif_form_row">
+                                <div class="col verif_items ">asd</div>
+                                <div class="col verif_items ">wer</div>
+                                <div class="col verif_items ">sdg</div>
+                            </div> -->
+
+                        <label class="pr-2">Photos Gallery</label>
+                        <button type="button" class="btn myBtn" id="addPhotoBtn" onclick="(
+                                function(){
+                                    $('#photos_add_input').trigger('click');
+                                }
+                            )()">+</button>
+                        <input type="file" multiple id="photos_add_input" onchange="loadPhotos(this)"
+                            style="display:none">
+
+                        <div class="gridWrapper" id="photoGrid">
+
+                        </div>
+                        <!-- <div class="row verif_form_row">
+                                <div class="col verif_items ">asd</div>
+                                <div class="col verif_items ">wer</div>
+                                <div class="col verif_items ">sdg</div>
+                            </div> -->
+
+
+
+                        <label>Treatments</label>
+                        <button type="button" class="btn myBtn" onclick="(
+                                    function(){
+                                        $('#addClinicTreatment').modal('show');
+                                    }
+                                )();">+</button>
+
+                        <div class="gridWrapper" id="treatmentGrid">
+
+                        </div>
+
+                        <label>Accommodations</label>
+                        <button type="button" class="btn myBtn" onclick="(
+                                    function(){
+                                        $('#addAccommodations').modal('show');
+                                    }
+                                )();">+</button>
+
+                        <div class="gridWrapper" id="accommodationsGrid">
+
+                        </div>
+
+                        <label>Clinic</label>
+                        <button type="button" class="btn myBtn" onclick="(
+                                    function(){
+                                        $('#addDoctorClinic').modal('show');
+                                    }
+                                )();">+</button>
+
+                        <div class="gridWrapper" id="clinicGrid">
+
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div> -->
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- clinic verification modal -->
+    <div id="verif_clinic_Modal" class="modal fade left" role="dialog">
+        <div class="modal-dialog modal-lg modal-full-height modal-left" role="document">
+
+            <!-- Modal content-->
+            <div class="modal-content px-5">
+
+                <div class="modal-header">
+
+                    <div class="row" style="width: 100%;">
+                        <div class="col-lg">
+                            <div class="row pb-4 pl-2">
+                                <img src="../images/profile.png" id="profile_photo_clinic" class="img-thumbnail"
+                                    style="border-radius: 50%; width: 50px; height: 50px;" onclick="(
+                                                function(){
+                                                    $('#profile_photo_input_clinic').trigger('click');
+                                                }
+                                            )()">
+                                <input type="file" id="profile_photo_input_clinic" style="display:none"
+                                    onchange="loadProfilePhotos()" />
+                                <h4 class="modal-title px-4 cAfter" id="verif_modal_drName_clinic"
+                                    style="margin-top: auto; margin-bottom: auto;">&nbsp; </h4>
+                            </div>
+                            <p id="verif_modal_regText_clinic">Registered on : <span id="verif_modal_regDate_clinic"></span></p>
+                        </div>
+                        <div class="col-sm">
+                            
+                        </div>
+                        <div class="col-sm">
+                            <button type="submit" id="verif_modal_saveBtn_clinic" class="btn btn-default myBtn"
+                                onclick="save('REGISTERED','CLINIC')">Save</button>
+                            <button type="submit" id="verif_modal_approvBtn_clinic" class="btn btn-default myBtn"
+                                onclick="approveDoctor('VERIFIED')">Approve</button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="close" data-dismiss="modal" onclick="clearData($(this).parent().parent())">&times;</button>
+
+                </div>
+
+                <div class="modal-body" style="padding: 20px;">
+
+                    <form id="verif_modal_clinic_form">
+
+                        <!-- <label for="verif_modal_cname">Clinic Name</label> -->
+                        <div class="row verif_form_row">
+                            <div class="col-4"> <label for="verif_modal_cname_clinic">Clinic Name</label>
+                                <input type="text" class="form-control" placeholder="Name"
+                                    id="verif_modal_cname_clinic"></div>
+                            <div class="col-4"> <label for="verif_modal_dname_clinic">Establishment Date</label>
+                                <input type="date" class="form-control" placeholder="Date"
+                                    id="verif_modal_dname_clinic"></div>
+
+                        </div>
+                        <div class="row verif_form_row">
+                            <div class="col-8"> <label for="verif_modal_address_clinic">Clinic Address</label>
+                                <textarea rows="3" type="text" class="form-control" placeholder="Address"
+                                    id="verif_modal_address_clinic"></textarea>
+                            </div>
+                            <div class="col-4">
+
+                                <div class="col"><label></label><input type="number" class="form-control"
+                                        placeholder="Pincode" id="verif_modal_pincode_clinic"></div>
+                                <div style="margin-top: -15px;" class="col"><label></label><input type="text"
+                                        class="form-control" placeholder="Map Link" id="verif_modal_maplink_clinic">
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="verif_modal_fname_clinic">Name</label>
+                        <div class="row verif_form_row">
+                            <div class="col"><input type="text" class="form-control" placeholder="First Name"
+                                    id="verif_modal_fname_clinic"></div>
+                            <div class="col"><input type="text" class="form-control" placeholder="Middle Name"
+                                    id="verif_modal_mname_clinic"></div>
+                            <div class="col"><input type="text" class="form-control" placeholder="Last Name"
+                                    id="verif_modal_lname_clinic"></div>
+                        </div>
+
+                        <div class="row verif_form_row">
+                            <div class="col"><label for="verif_modal_number_clinic">Phone No.</label>
+                                <input type="number" class="form-control" placeholder="Phone No."
+                                    id="verif_modal_number_clinic">
+                            </div>
+
+                            <div class="col"><label for="verif_modal_repNo_clinic">Representative's No.</label>
+                                <input type="number" class="form-control" placeholder="Representative's No."
+                                    id="verif_modal_repNo_clinic">
+                            </div>
+
+                            <div class="col">
+                                <label for="verif_modal_accNo_clinic">Accounts's No.</label>
+                                <input type="number" class="form-control" placeholder="Accounts's No."
+                                    id="verif_modal_accNo_clinic">
+                            </div>
+                        </div>
+
+
+                        <div class="row verif_form_row">
+                            <div class="col"><label for="verif_modal_refNo_clinic">Reference No.</label><input
+                                    type="text" class="form-control" placeholder="Reference No."
+                                    id="verif_modal_refNo_clinic"></div>
+                            <div class="col"><label for="verif_modal_working_clinic">Working Since</label><input
+                                    type="date" class="form-control" placeholder="Working Since"
+                                    id="verif_modal_working_clinic"></div>
+                            <div class="col"> Exp : </div>
+                        </div>
+
+                        <label>DOB & Gender</label>
+                        <div class="row verif_form_row">
+                            <div class="col"><input type="date" class="form-control" placeholder="DOB"
+                                    id="verif_modal_dob_clinic"></div>
+                            <div class="col">
+                                <select class="form-control" id="verif_modal_gender_clinic">
+                                    <option value="" selected>select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+
+                        <label class="pt-2">Availability</label>
+                        <button type="button" class="btn myBtn" data-toggle="modal" id="clinicAavailability">+</button>
+
+                        <div class="gridWrapper" id="availGrid_clinic">
+
+                        </div>
+
+
+                        <label>Qualifications, Certifications & Documents</label>
+                        <button type="button" class="btn myBtn" data-toggle="modal" id="clinicDocument">+</button>
+
+
+                        <div class="gridWrapper" id="documentGrid_clinic">
+
+                        </div>
+
+                        <label>Photos Gallery</label>
+                        <button type="button" class="btn myBtn" id="addPhotoBtn1" onclick="(
+                                    function(){
+                                        $('#photos_add_input_clinic').trigger('click');
+                                    }
+                                )()">+</button>
+                        <input type="file" multiple id="photos_add_input_clinic" onchange="loadPhotos(this)"
+                            style="display:none">
+
+                        <div class="gridWrapper" id="photoGrid_clinic">
+
+                        </div>
+
+
+                        <label>Treatments</label>
+                        <button type="button" class="btn myBtn" onclick="(
+                                function(){
+                                    $('#addClinicTreatment').modal('show');
+                                }
+                            )();">+</button>
+
+                        <div class="gridWrapper" id="treatmentGrid_clinic">
+
+                        </div>
+
+                        <label>Doctors</label>
+                        <button type="button" class="btn myBtn" onclick="(
+                                function(){
+                                    $('#addClinicDoctor').modal('show');
+                                }
+                            )();">+</button>
+
+                        <div class="gridWrapper" id="doctorGrid_clinic">
+
+                        </div>
+
+
+                        <label>Accommodations</label>
+                        <button type="button" class="btn myBtn" onclick="(
+                                    function(){
+                                        $('#addAccommodations').modal('show');
+                                    }
+                                )();">+</button>
+
+                        <div class="gridWrapper" id="accommodationsGrid_clinic">
+
+                        </div>
+
+
+                    </form>
+                </div>
+
+                <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div> -->
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal Add Document -->
+    <div class="modal fade" id="addDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Add Document</h2>
+                    </div>
+                    <button type="button"  class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="addDocument_form">
+
+                    <div class="row my-3">
+                        <div class="col-1"></div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputDocType" placeholder="Select Type" required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="form-group col-10 p-0 mb-0">
+                            <div>
+                                <select class="mdb-select md-form rounded"
+                                    style="border-color: #d3d3d3;margin-top: 0px;color: black; width: 413px; height: 40px;"
+                                    id="inputDocType">
+                                    <option value="" disabled selected>&nbsp;Select Type*</option>
+                                    <option value="Document">Document</option>
+                                    <option value="Credential">Credential</option>
+                                    <option value="Qualification">Qualification</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input class="form-control col-10 w300 rounded" id="inputDocTitle"
+                            placeholder="Title Of Document" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+
+                        <div class="input-group col-10 p-0">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputDocFile">
+                                <label class="custom-file-label" id="fileLabel" for="inputDocFile">Upload file</label>
+                            </div>
+                            <!-- <div class="input-group-append">
+                                    <span class="input-group-text" id="">+</span>
+                                </div> -->
+                        </div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputDocTitle" placeholder="Title Of Document" required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <textarea class="form-control col-10 w300 rounded" id="inputDocDetails"
+                            placeholder="Enter Details" required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-4 mt-2 btn btn-primary" onclick="uploadDoc()"
+                            style="float: right;">Upload</button>
+                        <div class="col-1"></div>
+                    </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Add Availability -->
+    <div class="modal fade" id="addAvailability" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Add Availability</h2>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="addAvailability_form">
+
+                    <div class="row my-3">
+                        <div class="col-1"></div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputDocType" placeholder="Select Type" required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="form-group mb-0">
+                            <div>
+                                <select class="mdb-select md-form rounded"
+                                    style="border-color: #d3d3d3;margin-top: 0px;color: black; width: 413px; height: 40px;"
+                                    id="inputAvailDay">
+                                    <option value="" disabled selected>&nbsp;Select Day*</option>
+                                    <option value="0">Sunday</option>
+                                    <option value="1">Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+
+                        <div class="col-10 p-0">
+                            <div class="row">
+                                <label class="col-2">From</label>
+                                <input type="time" name="asdmk">
+                            </div>
+                        </div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputAvailTime" placeholder="Enter Time" -->
+                        <!-- required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button>  -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+
+                        <div class="col-10 p-0">
+                            <div class="row">
+                                <label for="timepicker2" class="col-2">To</label>
+                                <div class="input-group bootstrap-timepicker timepicker col-10 pl-0"
+                                    style="z-index: 99999 !important;">
+                                    <input id="timepicker2" type="text" class="form-control input-small myTimepicker">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputAvailTime" placeholder="Enter Time" -->
+                        <!-- required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button>  -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <textarea class="form-control col-10 w300 rounded" id="inputAvailAddress"
+                            placeholder="Enter Address" required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input type="number" class="form-control col-10 w300 rounded" id="inputAvailPincode"
+                            placeholder="Enter pincode" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-4 mt-2 btn btn-primary" id="approveAvail"
+                            onclick="approveAvail()" style="float: right;">Approve</button>
+                        <div class="col-1"></div>
+                    </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- clinic Modal Add Treatment -->
+    <div class="modal fade" id="addClinicTreatment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Add Treatment</h2>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="addTreatment_form">
+                    <div class="row my-3">
+                        <div class="col-1"></div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputDocType" placeholder="Select Type" required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="form-group mb-0">
+                            <div>
+                                <select class="mdb-select md-form rounded"
+                                    style="border-color: #d3d3d3;margin-top: 0px;color: black; width: 413px; height: 40px;"
+                                    id="treatment_type_clinic">
+                                    <option value="" disabled selected>&nbsp;Select Treatment*</option>
+                                    <option value="Fertility Services (Without IUI) - Injections & Ovary Stimulation">
+                                        Fertility Services (Without IUI) - Injections & Ovary Stimulation</option>
+                                    <option value="Only IUI Procedure (One cycle)"> Only IUI Procedure (One cycle)
+                                    </option>
+                                    <option value="IUI Package Including Semen Preparation, Injection, Consultations">
+                                        IUI Package Including Semen Preparation, Injection, Consultations</option>
+                                    <option value="IUI Package (Two Cycle)"> IUI Package (Two Cycle)</option>
+                                    <option value="Ovary Stimulation"> Ovary Stimulation</option>
+                                    <option value="Egg/ Oocyte Donation (OD) per cycle - without IVF"> Egg/ Oocyte
+                                        Donation (OD) per cycle - without IVF</option>
+                                    <option value="Donor Sperm - without IVF"> Donor Sperm - without IVF</option>
+                                    <option value="Embryo donation (ED) - without IVF"> Embryo donation (ED) - without
+                                        IVF</option>
+                                    <option value="TESE (For Single Attempt)"> TESE (For Single Attempt)</option>
+                                    <option value="TESA (without IVF)"> TESA (without IVF)</option>
+                                    <option value="MESA (without IVF)"> MESA (without IVF)</option>
+                                    <option value="IVF 1 cycle (With Injections) - Own egg and Sperm"> IVF 1 cycle (With
+                                        Injections) - Own egg and Sperm</option>
+                                    <option value="IVF 1 cycle (Without Injections) - Own egg and Sperm"> IVF 1 cycle
+                                        (Without Injections) - Own egg and Sperm</option>
+                                    <option value="IVF 1 cycle (With Injections) - Donor egg and Own Sperm"> IVF 1 cycle
+                                        (With Injections) - Donor egg and Own Sperm</option>
+                                    <option value="IVF 1 cycle (Without Injections) - Donor egg and Own Sperm"> IVF 1
+                                        cycle (Without Injections) - Donor egg and Own Sperm</option>
+                                    <option value="IVF 3 Cycles (With Injections) - Own egg and Sperm - Package"> IVF 3
+                                        Cycles (With Injections) - Own egg and Sperm - Package</option>
+                                    <option value="IVF 3 cycle (Without Injections) - Own egg and Sperm - Package"> IVF
+                                        3 cycle (Without Injections) - Own egg and Sperm - Package</option>
+                                    <option value="IVF 3 cycle (With Injections) - Donor egg and Own Sperm -Package">
+                                        IVF 3 cycle (With Injections) - Donor egg and Own Sperm -Package</option>
+                                    <option value="IVF 3 cycle (Without Injections) - Donor egg and Own Sperm -Package">
+                                        IVF 3 cycle (Without Injections) - Donor egg and Own Sperm -Package</option>
+                                    <option
+                                        value="IVF Unlimited Cycles (With Injections) - Own egg and Sperm - Package">
+                                        IVF Unlimited Cycles (With Injections) - Own egg and Sperm - Package</option>
+                                    <option
+                                        value="IVF Unlimited Cycles (Without Injections) - Own egg and Sperm - Package">
+                                        IVF Unlimited Cycles (Without Injections) - Own egg and Sperm - Package</option>
+                                    <option value="IVF + Intracytoplasmic sperm injection (ICSI) - With Injections"> IVF
+                                        + Intracytoplasmic sperm injection (ICSI) - With Injections</option>
+                                    <option
+                                        value="IVF + Intracytoplasmic Morphological Sperm Injection (IMSI) - With Injections">
+                                        IVF + Intracytoplasmic Morphological Sperm Injection (IMSI) - With Injections
+                                    </option>
+                                    <option value="Endometrial Receptivity Array (ERA)"> Endometrial Receptivity Array
+                                        (ERA)</option>
+                                    <option value="Blastocyst Transfer"> Blastocyst Transfer</option>
+                                    <option value="Surrogacy (own embryo and One Cycle IVF)"> Surrogacy (own embryo and
+                                        One Cycle IVF)</option>
+                                    <option value="Surrogacy (Donor Egg and One Cycle IVF)"> Surrogacy (Donor Egg and
+                                        One Cycle IVF)</option>
+                                    <option value="Surrogacy (Own Embryo and 3 Cycles IVF)"> Surrogacy (Own Embryo and 3
+                                        Cycles IVF)</option>
+                                    <option value="Surrogacy (Donor Egg and 3 Cycles IVF)"> Surrogacy (Donor Egg and 3
+                                        Cycles IVF)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input type="number"  class="form-control col-10 w300 rounded" id="treatment_duration_clinic"
+                            placeholder="Duration" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="form-check form-check-inline mx-4 pl-5">
+                        <input class="form-check-input mb-2" name="treatment_category_clinic" type="radio" value="local"
+                            id="treatment_cat_local">
+                        <label for="treatment_cat_local"> Local ( &#x20B9; ) </label>
+                    </div>
+
+                    <div class="form-check form-check-inline mx-4 pr-2">
+                        <input class="form-check-input mb-2" name="treatment_category_clinic" type="radio"
+                            value="international" id="treatment_cat_int">
+                        <label for="treatment_cat_int">international ( &#36; )</label>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="col ml-3">
+                            <input type="number" class="form-control w300 rounded" id="treatment_price_clinic_from"
+                                placeholder="Price from" required>
+                        </div>
+
+                        <div class="col mr-3">
+                            <input type="number" class="form-control w300 rounded" id="treatment_price_clinic_to"
+                                placeholder="Price to" required>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input type="number" class="form-control col-10 w300 rounded" id="treatment_price_clinic_to" placeholder="Price to" required>
+                        <div class="col-1"></div>
+                    </div> -->
+
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-4 mt-2 btn btn-primary" 
+                            onclick="addTreatment()" style="float: right;">Save</button>
+                        <div class="col-1"></div>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- clinic Modal Add Doctor -->
+    <div class="modal fade" id="addClinicDoctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Add Doctor</h2>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="addDoctor_form">
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+
+                        <div class="input-group col-10 w300 p-0">
+                            <input class="form-control w300 rounded" id="add_doctor_number_clinic"
+                                placeholder="Doctors number" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text" style="cursor: pointer;" onclick="selectUser($(this).parent().parent().find('input'),'DOCTOR')"
+                                    id="basic-addon2">Search Doctor</span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input class="form-control col-10 w300 rounded" id="doctor_name_clinic" placeholder="name "
+                            required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+
+                    <!-- <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input class="form-control col-10 w300 rounded" id="doctor_qualification_clinic"
+                            placeholder="Qualification " required></textarea>
+                        <div class="col-1"></div>
+                    </div> -->
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <textarea class="form-control col-10 w300 rounded" id="doctor_description_clinic"
+                            placeholder="Description " required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button id="addDoctorInClinic_btn" type="button" class="col-4 mt-2 btn btn-primary" onclick="addDoctorInClinic()"
+                            style="float: right;">Create New</button>
+                        <div class="col-1"></div>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- BOOK APPOINTMENT MODAL -->
+    <div class="modal fade" id="bookAppointment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Book Appointment</h2>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="bookAppointment_form">
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+
+                        <div class="input-group col-10 w300 p-0">
+                            <input class="form-control w300 rounded" id="book_appointment_number"
+                                placeholder="Patients number" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text" style="cursor: pointer;" onclick="selectClient()"
+                                    id="basic-addon2">Select Client</span>
+                            </div>
+                        </div>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row my-3" id="clientDetails">
+                        <div class="col-1"></div>
+                        <div class="row col-10">
+                            <div class="col-6">
+                                <b>Name:</b>
+                                <span id="client_name"></span>
+
+                            </div>
+                            <div class="col-6">
+                                <b>Number:</b>
+                                <span id="client_number"></span>
+
+                            </div>
+
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-1"></div>
+                        <div class="row col-10">
+                            <div class="col-6">
+                                <b>Gender:</b>
+                                <span id="client_gender"></span>
+
+                            </div>
+                            <div class="col-6">
+                                <b>City:</b>
+                                <span id="client_city"></span>
+
+                            </div>
+
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-1"></div>
+                        <input type="text" class="form-control col-10 w300 rounded" placeholder="Date"
+                            id="book_appointment_date" onfocus="(this.type = 'date')" onblur="(this.type = 'text')">
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+
+                        <div class="col-10 p-0">
+                            <!-- <div class="row"> -->
+                            <!-- <label for="timepicker3" class="col-2">From</label> -->
+                            <div class="input-group bootstrap-timepicker timepicker" style="z-index: 99999 !important;">
+                                <input id="timepicker3" type="text" class="form-control input-small myTimepicker">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="inputAvailTime" placeholder="Enter Time" -->
+                        <!-- required> -->
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button>  -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <!-- <input class="form-control col-10 w300 rounded" id="book_appointment_address"
+                                placeholder="Enter Address" required> -->
+
+                        <select class="form-control col-10 w300 rounded" id="book_appointment_address" required>
+                            <option value="" disabled selected>&nbsp;Select Address*</option>
+                        </select>
+
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <textarea class="form-control col-10 w300 rounded" id="book_appointment_details"
+                            placeholder="Enter Details" required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-4 mt-2 btn btn-primary" id="submitApointment"
+                            onclick="submitAppointment()" style="float: right;">Submit</button>
+                        <div class="col-1"></div>
+                    </div>
+                
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- clinic Modal Add Accommodations -->
+    <div class="modal fade" id="addAccommodations" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Add Accommodations</h2>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="addAccommodations_form">
+
+                        <div class="row mb-3">
+                            <div class="col-1"></div>
+                            <input class="form-control col-10 w300 rounded" id="accommodation_name"
+                                name="accommodation_name" placeholder="name " required>
+                            <div class="col-1"></div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-1"></div>
+                            <input type="number" class="form-control col-10 w300 rounded" id="accommodation_price"
+                                name="accommodation_price" placeholder="price " required>
+                            <div class="col-1"></div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-1"></div>
+                            <input class="form-control col-10 w300 rounded" id="accommodation_address"
+                                name="accommodation_address" placeholder="address " required>
+                            <div class="col-1"></div>
+                        </div>
+
+                    </form>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <button type="button" class="col-4 mt-2 btn btn-primary" onclick="addAccommodations()"
+                            style="float: right;">Add</button>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor Modal Add Clinic -->
+    <div class="modal fade" id="addDoctorClinic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <h2>Add Clinic</h2>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForm($(this).parent().parent())">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+
+                    <form id="addClinic_form">
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <div class="input-group col-10 w300 p-0">
+                            <input class="form-control w300 rounded" id="clinic_number_doctor"
+                                placeholder="Clinic's Number" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text" style="cursor: pointer;" onclick="selectUser($(this).parent().parent().find('input'),'CLINIC')"
+                                    id="basic-addon2">Search Clinic</span>
+                            </div>
+                        </div>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input type="text" class="form-control col-10 w300 rounded" id="clinic_name_doctor"
+                            placeholder="Name" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <textarea class="form-control col-10 w300 rounded" id="clinic_address_doctor"
+                            placeholder="Address" required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input class="form-control col-10 w300 rounded" id="clinic_pincode_doctor"
+                            placeholder="PinCode" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-4 mt-2 btn btn-primary" id="addClinicInDoctor" onclick="addClinicInDoctor()"
+                            style="float: right;">Create New</button>
+                        <div class="col-1"></div>
+                    </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- New Modal Add Availability -->
+     <div class="modal fade" id="new_addAvailability" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" data-backdrop="false">
+     <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+             <!--Header-->
+             <div class="modal-header">
+                 <div class="m-0">
+                     <h2>Add Availability</h2>
+                 </div>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="(function(){
+                    $('.switch').find(':checkbox:checked').trigger('click');
+                 })()">
+                     <span aria-hidden="true" class="white-text">×</span>
+                 </button>
+             </div>
+
+             <!--Body-->
+             <div class="modal-body">
+
+                <form id="new_addAvailability_form">
+                 
+                 <div id="day_wrapper" class="mb-3 p-3">
+                </div>
+
+                 <div class="row mb-3">
+                     <div class="col-1"></div>
+                     <textarea class="form-control col-10 w300 rounded" id="new_inputAvailAddress"
+                         placeholder="Enter Address" required></textarea>
+                     <div class="col-1"></div>
+                 </div>
+
+                 <div class="row mb-3">
+                     <div class="col-1"></div>
+                     <input type="number" class="form-control col-10 w300 rounded" id="new_inputAvailPincode"
+                         placeholder="Enter pincode" required>
+                     <div class="col-1"></div>
+                 </div>
+
+                 <div class="row">
+                     <div class="col-7"></div>
+                     <button type="button" class="col-4 mt-2 btn btn-primary" id="new_approveAvail"
+                         onclick="newApproveAvail()" style="float: right;">Approve</button>
+                     <div class="col-1"></div>
+                 </div>
+
+                 </form>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        // function availability(){
+        $('#availability').click(function () {
+            // $('#addAvailability').modal('show')
+            $('#new_addAvailability').modal('show');
+        })
+        $('#clinicAavailability').click(function () {
+            // $('#addClinicAvailability').modal('show')
+            // $('#addAvailability').modal('show')
+            $('#new_addAvailability').modal('show');
+
+        })
+        $('#clinicDocument').click(function () {
+            // $('#addClinicDocument').modal('show')
+            $('#addDocument').modal('show')
+
+        })
+
+        $('#document').click(function () {
+            $('#addDocument').modal('show')
+        })
+
+        $('#addPhotoBtn').click(function () {
+            console.log('add photo clicked')
+        })
+
+
+        $('#verif').click(function () {
+            $('#appoint').removeClass('active')
+            $('#enq').removeClass('active')
+            $('#settle').removeClass('active')
+        })
+
+        $('#appoint').click(function () {
+            $('#verif').removeClass('active')
+            $('#enq').removeClass('active')
+            $('#settle').removeClass('active')
+        })
+
+        $('#enq').click(function () {
+            $('#appoint').removeClass('active')
+            $('#verif').removeClass('active')
+            $('#settle').removeClass('active')
+        })
+
+        $('#settle').click(function () {
+            $('#appoint').removeClass('active')
+            $('#enq').removeClass('active')
+            $('#verif').removeClass('active')
+        })
+
+
+        $(document).ready(function () {
+            //   $("#navHolder").load("../html/sideNav.html");
+            // $( "#tabs" ).tabs();
+
+
+
+            $("#verified_table_mwrapper").hide();
+            $('#weeks_mwrapper').hide();
+            $('#follow_mwrapper').hide();
+            $('#all_mwrapper').hide();
+
+
+            // $('#timepicker1').timepicker({
+            //     template: 'dropdown',
+            //     appendWidgetTo: 'body',
+            //     icons: {
+            //         time: "fa fa-clock-o",
+            //         date: "fa fa-calendar",
+            //         up: "fa fa-arrow-up",
+            //         down: "fa fa-arrow-down",
+            //         previous: "fa fa-chevron-left",
+            //         next: "fa fa-chevron-right",
+            //         today: "fa fa-clock-o",
+            //         clear: "fa fa-trash-o"
+            //     },
+            // });
+            // $('#timepicker2').timepicker({
+            //     template: 'dropdown',
+            //     appendWidgetTo: 'body',
+            //     icons: {
+            //         time: "fa fa-clock-o",
+            //         date: "fa fa-calendar",
+            //         up: "fa fa-arrow-up",
+            //         down: "fa fa-arrow-down",
+            //         previous: "fa fa-chevron-left",
+            //         next: "fa fa-chevron-right",
+            //         today: "fa fa-clock-o",
+            //         clear: "fa fa-trash-o"
+            //     },
+
+            // });
+
+            // $('#timepicker3').timepicker({
+            //     template: 'dropdown',
+            //     appendWidgetTo: 'body',
+            //     icons: {
+            //         time: "fa fa-clock-o",
+            //         date: "fa fa-calendar",
+            //         up: "fa fa-arrow-up",
+            //         down: "fa fa-arrow-down",
+            //         previous: "fa fa-chevron-left",
+            //         next: "fa fa-chevron-right",
+            //         today: "fa fa-clock-o",
+            //         clear: "fa fa-trash-o"
+            //     },
+            // });
+            // $('#timepicker4').timepicker({
+            //     template: 'dropdown',
+            //     appendWidgetTo: 'body',
+            //     icons: {
+            //         time: "fa fa-clock-o",
+            //         date: "fa fa-calendar",
+            //         up: "fa fa-arrow-up",
+            //         down: "fa fa-arrow-down",
+            //         previous: "fa fa-chevron-left",
+            //         next: "fa fa-chevron-right",
+            //         today: "fa fa-clock-o",
+            //         clear: "fa fa-trash-o"
+            //     },
+
+            // });
+
+        });
+
+
+        document.getElementById('inputDocFile').onchange = function () {
+            var name = this.value
+            name = name.split('\\')
+            name = name[2]
+            // console.log("File:"+JSON.stringify($('#fileLabel'),undefined,3))
+            // console.log($('#fileLabel').val())
+            console.log($('#fileLabel').text())
+            if (name == '') {
+                alert("Please Choose a valid document")
+                return
+            }
+            else {
+                $('#fileLabel').text(name)
+            }
+        }
+    </script>
+    <script src="../js/image-compressor.js"></script>
+    <script src="../js/ajax.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/appointment.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/partner_portal.css">
+    <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+    <!-- <script src="../js/partner_portal.js"></script> -->
+
+    <link rel="icon" href="../images/fav_icon.png" type="image/gif">
+    <title>Management Portal</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="nav_part">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand">
+                    <h1 class="m-0"><span class="display-5 display-md-4 m-0">Clara Health</span><br><h4 class="m-0 ml-2">Management Portal</h4></h1>
+                </a>
+
+            </nav>
+        </div>
+        <div class="body_part container">
+            <div class="row mt-0">
+                <div class="col-md-8">
+                    <img style="width: 600px;"src="../images/login_management.gif" alt="">
+                    <h3>Manage Organizations, Clinics, Doctors & Patients
+                    </h3>
+                    <p style="font-size: 20px;">Client Verification, Customer Support, Onboarding, Appointment Management, Paient Management, Chat Pannel & Other Utilities.
+                    </p>
+                    <br>
+                </div>
+                <div class="col-md-4 mt-md-5" style="margin: 0 auto; margin-bottom: 10px;">
+                    <form style="width: 100%;">
+                        <label>
+                            <h2>Enter Details.</h2>
+                        </label>
+                        <div class="form-group">
+                            <div>
+                                <select class="mdb-select md-form w300 rounded" style="border-color: #d3d3d3;margin-top: 0px;color: black;" id="inputMain">
+                                    <option value="" disabled selected>&nbsp;Select Department</option>
+                                    <option value="1">&nbsp;Management</option>
+                                    <option value="2">&nbsp;Accounts</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control w300 rounded" id="inputNumber" placeholder="Mobile Number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="password" class="form-control w300 rounded" id="inputPassword" placeholder="Password">
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="proceed()" style="float: right;" data-toggle="modal">Proceed</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  -->
+    <script src="../js/login_management.js"></script>
+
+</body>
+
+</html>

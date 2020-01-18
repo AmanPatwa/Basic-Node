@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/partner_portal.css">
+    <!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+    <!-- <script src="../js/partner_portal.js"></script> -->
+
+    <title>Partner Portal</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="nav_part">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand">
+                    <h2>Clara Health</h2>
+                </a>
+
+                <ul style="-ms-flex-align: end">      
+                    <li class="dropdown">          
+                        <div>
+                            <select class="mdb-select md-form w300 rounded dropdown-toggle" data-toggle="dropdown" style="border-color: #d3d3d3;margin-top: 0px;color: black;" id="inputMain">
+                                <!-- <option value="" disabled selected>&nbsp;You are a?</option>
+                                <option value="1">&nbsp;I'm a Doctor</option>
+                                <option value="2">&nbsp;We have a Clinic</option> -->
+                            </select>
+
+                            <ul class="dropdown-menu" style="width: 200px">  
+                                    <li><a href="#">
+                                       <div class="notification_desc">
+                                        <p class="m-0">Lorem ipsum dolor amet</p>
+                                        <p class="m-0"><span class="m-0">1 hour ago</span></p>
+                                        </div>
+                                       <div class="clearfix"></div>	
+                                    </a></li><hr>
+                                    <li class="odd"><a href="#">
+                                        <div class="user_img"><img src="images/4.jpg" alt=""></div>
+                                       <div class="notification_desc">
+                                        <p>Lorem ipsum dolor amet </p>
+                                        <p><span>1 hour ago</span></p>
+                                        </div>
+                                      <div class="clearfix"></div>	
+                                    </a></li>
+                                    <li><a href="#">
+                                       <div class="user_img"><img src="images/3.jpg" alt=""></div>
+                                       <div class="notification_desc">
+                                        <p>Lorem ipsum dolor amet </p>
+                                        <p><span>1 hour ago</span></p>
+                                        </div>
+                                       <div class="clearfix"></div>	
+                                    </a></li>
+                                    <li><a href="#">
+                                       <div class="user_img"><img src="images/2.jpg" alt=""></div>
+                                       <div class="notification_desc">
+                                        <p>Lorem ipsum dolor amet </p>
+                                        <p><span>1 hour ago</span></p>
+                                        </div>
+                                       <div class="clearfix"></div>	
+                                    </a></li>
+                                    <li>
+                                        <div class="notification_bottom">
+                                            <a href="#">See all messages</a>
+                                        </div> 
+                                    </li>
+                                </ul>
+                        </div>
+                        </li>
+                     </ul>   
+
+
+                    
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseNav" aria-controls="collapseNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapseNav" style="justify-content: flex-end;">
+                    <form class="form-inline mr-0">
+                        <span class="mr-3 text-dark"><a href="/auth/login" class="text-dark"
+                                style="text-decoration: none;">Already
+                                member?</a></span>
+                        <button class="btn btn-outline-primary m-3 my-sm-0"><a href='/auth/signup' style="color:white">New User</a></button>
+                    </form>
+                </div> -->
+
+            </nav>
+        </div>
+        <div class="body_part container">
+            <div class="row mt-4">
+                <div class="col-md-8 mt-4">
+                    <img src="../images/loginpartner.png" alt="">
+                    <h3>Expand your service business online.
+                    </h3>
+                    <p>Join our community of professionals to successfully cater your business services across canada.
+                    </p>
+                    <br>
+                </div>
+                <div class="col-md-4" style="margin: 0 auto; margin-bottom: 10px;">
+                    <form style="width: 100%;">
+                        <label>
+                            <h2>Enter Details.</h2>
+                        </label>
+                        <div class="form-group">
+                            <div>
+                                <select class="mdb-select md-form w300 rounded" style="border-color: #d3d3d3;margin-top: 0px;color: black;" id="inputMain">
+                                    <option value="" disabled selected>&nbsp;You are a?</option>
+                                    <option value="1">&nbsp;I'm a Doctor</option>
+                                    <option value="2">&nbsp;We have a Clinic</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control w300 rounded" id="inputName" placeholder="Full Name*" required>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputPassword1">Password</label> -->
+                            <input class="form-control w300 rounded" id="inputNumber" aria-describedby="mobileHelp" placeholder="10 Digit Mobile Number*" required>
+                            <small id="mobileHelp" class="form-text text-muted" style="color:black!important;"><b>OTP Verification Required.</b></small>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control w300 rounded" id="inputAlternateNumber" placeholder="Alternate Number">
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <select class="mdb-select md-form w300 rounded" style="border-color: #d3d3d3" id="inputGender">
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control w300 rounded" id="inputCity" placeholder="City Name" required>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="check_send_otp()" style="float: right;" data-toggle="modal">Send OTP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: verifyOTP -->
+    <div class="modal fade left" id="verifyOtp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-full-height modal-left" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <p class="heading lead mb-0">Verify Via OTP</p>
+                        <p class="mt-0" id="number"></p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="../images/loginmod.gif" style="max-width: 100%;height: auto;">
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP">
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-2"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-3 mt-2 btn btn-primary" data-toggle="modal" onclick="verifyUser()" style="float: right;">Verify</button>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="text-center">
+                        <a id="resendOtp" class="mt-4" onclick="resendOtp()" style="color: #696969;">Resend</a>
+                    </div>
+
+
+                </div>
+
+                <!--Footer-->
+                <!-- <div class="modal-footer justify-content-center">
+                    <a type="button" class="btn btn-primary waves-effect waves-light">Send
+                        <i class="fa fa-paper-plane ml-1"></i>
+                    </a>
+                    <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Modal: verifyOTP -->
+
+    <!-- Modal: success otp verified -->
+    <div class="modal fade left" id="verifyUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-full-height modal-left" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <p class="heading lead mb-0">Register Doctor</p>
+                        <p class="mt-0" id="doctorName">Vinit Jain</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center"  >
+                        <img src="../images/loginsuccess.gif" style="max-width: 100%;height: auto;">
+                    </div>
+
+                    <div class="text-center">
+                        <p>
+                            <h4>Submitted Successfully</h4>
+                        </p>
+                        <p>Account under Review.</p>
+                        <p>
+                            Our Verification team will review and contact you to activate the account soon.
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: success otp verifies -->
+
+    <!-- Modal: Add Clinic -->
+    <div class="modal fade left" id="addClinic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-full-height modal-left" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="m-0">
+                        <p class="heading lead mb-0">Enter Clinic Details</p>
+                        <p class="mt-0" id="doctorInfo">Vinit Jain[76869654]</p>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">×</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="row my-3">
+                        <div class="col-1"></div>
+                        <input class="form-control col-10 w300 rounded" id="inputClinicName" placeholder="Clinic Name" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <textarea class="form-control col-10 w300 rounded" id="inputClinicAddress" placeholder="Address" required></textarea>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-1"></div>
+                        <input class="form-control col-10 w300 rounded" id="inputClinicPin" placeholder="Pin Code" required>
+                        <!-- <button type="button" class="btn btn-primary" style="float: right;">Verify</button> -->
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7"></div>
+                        <!-- <input class="form-control col-8 w300 rounded" id="inputOtp" placeholder="Enter OTP"> -->
+                        <button type="button" class="col-4 mt-2 btn btn-primary" id="sendOtp" data-toggle="modal" onclick="addClinicDetails()" style="float: right;">Send OTP</button>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal: success otp verifies -->
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>  -->
+    <script src="../js/partner_portal.js"></script>
+
+</body>
+
+</html>
